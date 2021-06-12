@@ -10,42 +10,36 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import hrms.hrms.business.abstracts.JobTitleService;
+import hrms.hrms.business.abstracts.UsersService;
 import hrms.hrms.core.utilities.results.DataResult;
 import hrms.hrms.core.utilities.results.Result;
-import hrms.hrms.entities.concretes.JobTitle;
+import hrms.hrms.entities.concretes.Users;
 
 @RestController
-@RequestMapping("/api/jobtitles")
-public class JobTitleController {
+@RequestMapping("/api/users")
+public class UsersController {
 
-	private JobTitleService jobTitleService;
+	private UsersService usersService;
 
 	@Autowired
-	public JobTitleController(JobTitleService jobTitleService) {
+	public UsersController(UsersService usersService) {
 		super();
-		this.jobTitleService = jobTitleService;
+		this.usersService = usersService;
 	}
 
 	@GetMapping("/getall")
-	public DataResult<List<JobTitle>> getall() {
-		return jobTitleService.getAll();
-
+	public DataResult<List<Users>> getAll() {
+		return this.usersService.getAll();
 	}
-	@GetMapping("/getbyTitle")
-	public DataResult <JobTitle> getbyTitle(String title) {
-		return jobTitleService.getByTitle(title);
 
-	}
 
 	@PostMapping("/add")
-	public Result add(@RequestBody JobTitle jobTitle) {
-		return jobTitleService.add(jobTitle);
+	public Result add(@RequestBody Users users) {
+		return this.usersService.add(users);
 	}
 
 	@DeleteMapping("/delete")
-	public Result Delete(@RequestBody JobTitle jobTitle) {
-		return jobTitleService.delete(jobTitle);
+	public Result delete(@RequestBody Users users) {
+		return this.usersService.delete(users);
 	}
-	
 }
