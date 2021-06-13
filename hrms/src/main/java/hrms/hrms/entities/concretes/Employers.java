@@ -34,7 +34,5 @@ public class Employers extends Users {
 	@Column(name = "phone")
 	private String phone;
 
-	@JsonIgnore
-	@Column(name = "created_at")
-	private LocalDate createdAt = LocalDate.now();
+
 }
