@@ -27,7 +27,7 @@ public class JobTitleManager implements JobTitleService {
 
 	@Override
 	public DataResult<List<JobTitle>> getAll() {
-		return new SuccessDataResult<List<JobTitle>>(this.jobTitleDao.findAll(), "Data Listelendi");
+		return new SuccessDataResult<List<JobTitle>>(this.jobTitleDao.findAll(), " Meslek Basliklari Listelendi");
 	}
 
 	@Override
@@ -37,13 +37,13 @@ public class JobTitleManager implements JobTitleService {
 			return new ErrorResult(" Bu başlık zaten kaydedilmiş.");
 
 		jobTitleDao.save(jobTitle);
-		return new SuccessResult(" Ürün Eklendi");
+		return new SuccessResult(" Meslek Eklendi");
 	}
 
 	@Override
 	public Result delete(JobTitle jobTitle) {
 		jobTitleDao.delete(jobTitle);
-		return new SuccessResult(" Ürün Silindi");
+		return new SuccessResult(" Meslek Silindi");
 
 	}
 
@@ -54,6 +54,13 @@ public class JobTitleManager implements JobTitleService {
 
 	private boolean checkIfTitleExists(String title) {
 		return jobTitleDao.findByTitle(title) != null;
+	}
+
+	@Override
+	public Result update(JobTitle jobTitle) {
+		// TODO Auto-generated method stub
+		jobTitleDao.save(jobTitle);
+		return new SuccessResult(" Meslek güncellendi. ");
 	}
 
 }
