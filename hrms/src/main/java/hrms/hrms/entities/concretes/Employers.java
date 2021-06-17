@@ -1,12 +1,12 @@
 package hrms.hrms.entities.concretes;
 
-import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -34,5 +34,7 @@ public class Employers extends Users {
 	@Column(name = "phone")
 	private String phone;
 
+	@OneToMany(mappedBy = "employers")
+	private List<JobAdverts> jobAdverts ;
 
 }

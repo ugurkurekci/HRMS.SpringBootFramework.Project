@@ -1,6 +1,7 @@
 package hrms.hrms.entities.concretes;
 
 import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,6 +10,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Inheritance;
 import javax.persistence.InheritanceType;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -41,10 +43,15 @@ public class Users {
 
 	@Column(name = "is_deleted")
 	private boolean isDelete = false;
-	
+
 	@JsonIgnore
 	@Column(name = "created_at")
 	private LocalDate createdAt = LocalDate.now();
-	
-	
+
+	@OneToMany(mappedBy = "users")
+	private List<EmailActivation> emailActivation;
+
+	@OneToMany(mappedBy = "users")
+	private List<CompanyStaffVerifications> companyStaffVerifications;
+
 }
