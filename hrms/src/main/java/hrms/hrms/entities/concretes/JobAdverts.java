@@ -23,6 +23,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "job_adverts")
+
 public class JobAdverts {
 
 	@Id
@@ -60,6 +61,9 @@ public class JobAdverts {
 
 	@Column(name = "application_deadline")
 	private LocalDateTime applicationDeadline;
+
+	@Column(name = "release_date")
+	private LocalDateTime releaseDate;
 
 	@Column(name = "is_active")
 	private boolean isActive = true;

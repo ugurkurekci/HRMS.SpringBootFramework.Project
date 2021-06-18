@@ -14,6 +14,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -25,6 +26,7 @@ import lombok.NoArgsConstructor;
 @Inheritance(strategy = InheritanceType.JOINED)
 @AllArgsConstructor
 @NoArgsConstructor
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "companyStaffVerifications" ,"emailActivation","mernisActivations"})
 public class Users {
 
 	@Id
@@ -53,5 +55,8 @@ public class Users {
 
 	@OneToMany(mappedBy = "users")
 	private List<CompanyStaffVerifications> companyStaffVerifications;
+	
+	@OneToMany(mappedBy = "users")
+	private List<MernisActivations> mernisActivations;
 
 }

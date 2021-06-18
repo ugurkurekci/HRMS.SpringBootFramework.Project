@@ -15,33 +15,23 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
 @Data
-@Table(name = "job_seeker_cv_educations")
+@Entity
 @AllArgsConstructor
 @NoArgsConstructor
-public class JobSeekersCvEducations {
+@Table(name = "job_seeker_cv_images")
+public class JobSeekersCvImages {
 
 	@Id
 	@Column(name = "id")
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-
 	@OneToOne
 	@JoinColumn(name = "job_seeker_cv_id")
 	private JobSeekersCV jobSeekersCV;
 
-	@Column(name = "school_name")
-	private String schoolName;
-
-	@Column(name = "deparment_name")
-	private String deparmentName;
-
-	@Column(name = "start_date")
-	private LocalDate startDate;
-
-	@Column(name = "graduation_date")
-	private LocalDate graduationDate;
+	@Column(name = "url")
+	private String url;
 
 	@Column(name = "created_at")
 	private LocalDate createdAt = LocalDate.now();

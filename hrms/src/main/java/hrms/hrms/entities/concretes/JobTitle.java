@@ -12,6 +12,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,6 +23,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Table(name = "job_positions")
+@JsonIgnoreProperties({ "hibernateLazyInitializer", "handler", "jobAdverts", "jobSeekersCvExperiences" })
 
 public class JobTitle {
 
@@ -38,11 +40,14 @@ public class JobTitle {
 
 	@Column(name = "is_deleted")
 	private boolean isDelete = false;
-	
+
 	@JsonIgnore
 	@Column(name = "created_at")
 	private LocalDate createdAt = LocalDate.now();
-	
+
 	@OneToMany(mappedBy = "jobTitle")
 	private List<JobAdverts> jobAdverts;
+
+	@OneToMany(mappedBy = "jobTitle")
+	private List<JobSeekersCvExperiences> jobSeekersCvExperiences;
 }

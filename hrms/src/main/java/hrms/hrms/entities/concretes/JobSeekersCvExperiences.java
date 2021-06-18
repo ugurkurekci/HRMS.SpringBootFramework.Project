@@ -15,12 +15,12 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Entity
-@Data
-@Table(name = "job_seeker_cv_educations")
 @AllArgsConstructor
 @NoArgsConstructor
-public class JobSeekersCvEducations {
+@Data
+@Entity
+@Table(name = "job_seeker_cv_experiences")
+public class JobSeekersCvExperiences {
 
 	@Id
 	@Column(name = "id")
@@ -31,17 +31,17 @@ public class JobSeekersCvEducations {
 	@JoinColumn(name = "job_seeker_cv_id")
 	private JobSeekersCV jobSeekersCV;
 
-	@Column(name = "school_name")
-	private String schoolName;
+	@OneToOne
+	@JoinColumn(name = "job_position_id")
+	private JobTitle jobTitle;
 
-	@Column(name = "deparment_name")
-	private String deparmentName;
+	@Column(name = "workplace_name")
+	private String workplaceName;
 
 	@Column(name = "start_date")
-	private LocalDate startDate;
-
-	@Column(name = "graduation_date")
-	private LocalDate graduationDate;
+	private LocalDate starDate;
+	@Column(name = "quit_date")
+	private LocalDate quitDate;
 
 	@Column(name = "created_at")
 	private LocalDate createdAt = LocalDate.now();
